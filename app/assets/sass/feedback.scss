@@ -1,0 +1,43 @@
+@use "node_modules/@nationalarchives/frontend/nationalarchives/tools/colour";
+@use "node_modules/@nationalarchives/frontend/nationalarchives/tools/spacing";
+@use "node_modules/@nationalarchives/frontend/nationalarchives/tools/typography";
+
+.tna-table {
+    &__cell {
+        &--percentage[style] {
+            position: relative;
+
+            &::before {
+                content: "";
+
+                width: var(--percentage);
+
+                position: absolute;
+                inset: 0 auto 0 0;
+                z-index: -1;
+
+                @include colour.tint;
+            }
+        }
+    }
+}
+
+.tna-container {
+    &--equal-height-contents {
+        > .tna-column {
+            > * {
+                height: 100%;
+
+                box-sizing: border-box;
+            }
+        }
+    }
+}
+
+.tna-feedback-code {
+    @include spacing.space-above;
+    padding: spacing.space(0.5);
+
+    @include colour.tint;
+    @include typography.detail-font;
+}

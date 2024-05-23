@@ -1,0 +1,69 @@
+{% extends 'layouts/project.html' %}
+
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+{% from "nationalarchives/components/radios/macro.njk" import tnaRadios %}
+{% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
+{% from "nationalarchives/components/warning/macro.njk" import tnaWarning %}
+
+{% set pageTitle = 'Your new API key' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  <div class="tna-column tna-column--full">
+    {{ tnaBreadcrumbs({
+      items: [
+        {
+          text: 'Home',
+          href: '/'
+        },
+        {
+          text: 'ETNA',
+          href: '/588c1222-5bdf-40db-9d84-29ffe6e3bb91'
+        },
+        {
+          text: 'API keys',
+          href: '/588c1222-5bdf-40db-9d84-29ffe6e3bb91/api-keys'
+        }
+      ]
+    }) }}
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <h1 class="tna-heading-xl">
+            {{ pageTitle }}
+        </h1>
+        {{ tnaWarning({
+          headingLevel: 2,
+          body: "Make sure you copy this key to a safe place. It will not be shown again once you leave this page."
+        }) }}
+        {{ tnaTextInput({
+          label: "API key",
+          headingLevel: 2,
+          headingSize: "m",
+          id: "key",
+          name: "key",
+          value: "cc76ba0e5690fefca81d19d298ed1cbc391a14a93f377c8db85d1832adb5fbab",
+          attributes: {
+            readonly: true
+          }
+        }) }}
+        <div class="tna-button-group">
+            {{ tnaButton({
+              text: "Copy key",
+              buttonElement: true
+            }) }}
+            {{ tnaButton({
+              text: "Back to API keys",
+              href: "/588c1222-5bdf-40db-9d84-29ffe6e3bb91/api-keys",
+              plain: true
+            }) }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

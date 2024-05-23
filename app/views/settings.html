@@ -1,0 +1,42 @@
+{% extends 'layouts/main.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/header/macro.njk' import tnaHeader %}
+
+{% set pageTitle = 'Settings' %}
+
+{% block header %}
+{{ tnaHeader({
+  logo: {
+    href: "/",
+    strapline: "Feedback"
+  },
+  navigation: [
+    {
+      text: "Log out",
+      href: "#/logout"
+    }
+  ],
+  topNavigation: topNavigation
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <h1 class="tna-heading-xl">
+          {{ pageTitle }}
+        </h1>
+        <ul class="tna-ul">
+          <li>
+            <a href="#">Change my password</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

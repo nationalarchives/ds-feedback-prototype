@@ -1,0 +1,69 @@
+{% extends 'layouts/project.html' %}
+
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+{% from "nationalarchives/components/search-field/macro.njk" import tnaSearchField %}
+
+{% set pageTitle = '2024-05-23 14:17:48' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  <div class="tna-column tna-column--full">
+    {{ tnaBreadcrumbs({
+      items: [
+        {
+          text: 'Home',
+          href: '/'
+        },
+        {
+          text: 'ETNA',
+          href: '/588c1222-5bdf-40db-9d84-29ffe6e3bb91'
+        },
+        {
+          text: 'Feedback',
+          href: '/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback'
+        }
+      ]
+    }) }}
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <hgroup class="tna-hgroup-xl">
+            <p class="tna-hgroup__supertitle">Feedback</p>
+            <h1 class="tna-hgroup__title">{{ pageTitle }}</h1>
+          </hgroup>
+          <dl class="tna-dl">
+            <dt>URL (link opens in new tab)</dt>
+            <dd>
+                <a href="https://tna.dblclk.dev{{ data.uri or '/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/' }}" target="_blank">{{ data.uri or '/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/' }}</a>
+            </dd>
+          </dl>
+          <h2 class="tna-heading-l">Range response</h2>
+          <dl class="tna-dl">
+            <dt>Prompt</dt>
+            <dd>
+                <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/prompts/1">How interesting was this article?</a>
+            </dd>
+            <dt>User response</dt>
+            <dd>Somewhat (2/4)</dd>
+          </dl>
+          <h2 class="tna-heading-l">Text response</h2>
+          <dl class="tna-dl">
+            <dt>Prompt</dt>
+            <dd>
+                <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/prompts/2">How can we improve this page?</a>
+            </dd>
+            <dt>User response</dt>
+            <dd>Too general. Wanted more specific nutritional info and studies.</dd>
+          </dl>
+      </div>
+      <div class="tna-column tna-column--full tna-!--padding-top-m">
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'layouts/project.html' %}
+
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+
+{% set pageTitle = 'API keys' %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <h1 class="tna-heading-xl">
+            {{ pageTitle }}
+        </h1>
+      </div>
+      <div class="tna-column tna-column--full tna-!--padding-top-m">
+        <div class="tna-table-wrapper">
+          <table class="tna-table">
+            <thead class="tna-table__head">
+              <tr class="tna-table__row">
+                <th class="tna-table__header">Name</th>
+                <th class="tna-table__header">Access</th>
+                <th class="tna-table__header">Lifespan</th>
+                <th class="tna-table__header">Expiry</th>
+                <th class="tna-table__header">Created by</th>
+                <th class="tna-table__header">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="tna-table__body">
+              <tr class="tna-table__row">
+                <th class="tna-table__header">Production</th>
+                <td class="tna-table__cell">Read/Write</td>
+                <td class="tna-table__cell">180 days</td>
+                <td class="tna-table__cell">2024-09-24 (127 days)</td>
+                <td class="tna-table__cell">Andrew Hosgood</td>
+                <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "Renew",
+                      href: "#",
+                      icon: "refresh"
+                    }) }}
+                    {{ tnaButton({
+                      text: "Delete",
+                      href: "#",
+                      icon: "trash"
+                    }) }}
+                  </div>
+                </td>
+              </tr>
+              <tr class="tna-table__row">
+                <th class="tna-table__header">Analytics</th>
+                <td class="tna-table__cell">Read</td>
+                <td class="tna-table__cell">90 days</td>
+                <td class="tna-table__cell">2024-05-12 (7 days) ⚠️</td>
+                <td class="tna-table__cell">Andrew Hosgood</td>
+                <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "Renew",
+                      href: "#",
+                      icon: "refresh"
+                    }) }}
+                    {{ tnaButton({
+                      text: "Delete",
+                      href: "#",
+                      icon: "trash"
+                    }) }}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tna-button-group">
+          {{ tnaButton({
+            text: "Create a new API key",
+            href: "/588c1222-5bdf-40db-9d84-29ffe6e3bb91/api-keys/add"
+          }) }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

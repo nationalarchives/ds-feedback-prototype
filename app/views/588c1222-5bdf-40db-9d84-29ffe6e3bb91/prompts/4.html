@@ -1,0 +1,208 @@
+{% extends 'layouts/main.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+{% from "nationalarchives/components/search-field/macro.njk" import tnaSearchField %}
+
+{% set pageTitle = 'How can we improve this page?' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  <div class="tna-column tna-column--full">
+    {{ tnaBreadcrumbs({
+      items: [
+        {
+          text: 'Home',
+          href: '/'
+        },
+        {
+          text: 'ETNA',
+          href: '/588c1222-5bdf-40db-9d84-29ffe6e3bb91'
+        },
+        {
+          text: 'Prompts',
+          href: '/588c1222-5bdf-40db-9d84-29ffe6e3bb91/prompts'
+        }
+      ]
+    }) }}
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <hgroup class="tna-hgroup-xl">
+          <p class="tna-hgroup__supertitle">Prompt</p>
+          <h1 class="tna-hgroup__title">{{ pageTitle }}</h1>
+        </hgroup>
+      </div>
+    </div>
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-1-3 tna-column--full-small tna-column--full-tiny tna-!--padding-top-l">
+        <h2 class="tna-heading-l">On this page</h2>
+        <ul class="tna-ul">
+          <li>
+            <a href="#details">Details</a>
+          </li>
+          <li>
+            <a href="#top-urls">Top 5 URLs</a>
+          </li>
+          <li>
+            <a href="#responses">Responses</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tna-column tna-column--width-2-3 tna-column--full-small tna-column--full-tiny tna-!--padding-top-l">
+        <h2 class="tna-heading-l" id="details">Details</h2>
+        <dl class="tna-dl">
+            <dt>URL pattern</dt>
+            <dd>/authors/*</dd>
+            <dt>Status</dt>
+            <dd>Active
+              {{ tnaButton({
+                text: "Deactivate",
+                buttonElement: true,
+                small: true
+              }) }}</dd>
+            <dt>Type</dt>
+            <dd>Text</dd>
+            <dt>Max length</dt>
+            <dd>250</dd>
+            <dt>Created on</dt>
+            <dd>2023-09-24</dd>
+            <dt>Created by</dt>
+            <dd>Andrew Hosgood</dd>
+        </dl>
+        <h2 class="tna-heading-l" id="top-urls">Top 5 URLs</h2>
+        <p>Links open in new windows.</p>
+        <div class="tna-table-wrapper">
+            <table class="tna-table">
+              <thead class="tna-table__head">
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">URL</th>
+                  <th class="tna-table__header">Responses</th>
+                </tr>
+              </thead>
+              <tbody class="tna-table__body">
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/john-blanke/" target="_blank">/explore-the-collection/stories/john-blanke/</a>
+                  </th>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback?uri=/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/">5</a>
+                  </td>
+                </tr>
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/the-east-river-column-the-rebels-who-helped-second-world-war-prisoners-of-war/" target="_blank">/explore-the-collection/stories/the-east-river-column-the-rebels-who-helped-second-world-war-prisoners-of-war/</a>
+                  </th>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback?uri=/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/">3</a>
+                  </td>
+                </tr>
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/list-of-animals-held-in-the-bear-garden-in-elizabethan-southwark/" target="_blank">/explore-the-collection/stories/list-of-animals-held-in-the-bear-garden-in-elizabethan-southwark/</a>
+                  </th>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback?uri=/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/">1</a>
+                  </td>
+                </tr>
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/" target="_blank">/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/</a>
+                  </th>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback?uri=/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/">1</a>
+                  </td>
+                </tr>
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/judy-the-only-dog-registered-as-a-prisoner-of-war/" target="_blank">/explore-the-collection/stories/judy-the-only-dog-registered-as-a-prisoner-of-war/</a>
+                  </th>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback?uri=/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/">1</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <h2 class="tna-heading-l" id="responses">Responses</h2>
+        {{ tnaSearchField({
+          label: "Filter responses by URL",
+          headingLevel: 3,
+          headingSize: "m",
+          id: "search",
+          name: "q"
+        }) }}
+        <p>Showing 5 of 29 responses</p>
+        <div class="tna-table-wrapper">
+          <table class="tna-table">
+            <thead class="tna-table__head">
+              <tr class="tna-table__row">
+                <th class="tna-table__header">URL</th>
+                <th class="tna-table__header">Response</th>
+                <th class="tna-table__header">Date</th>
+              </tr>
+            </thead>
+            <tbody class="tna-table__body">
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/john-blanke/" target="_blank">/explore-the-collection/stories/john-blanke/</a>
+                  </th>
+                  <td class="tna-table__cell">I found this article incredibly informative! It presented the health benefits of a plant-based diet in a clear and compelling way. The statistics and expert quotes really helped to reinforce the points made.</td>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback/1">2024-03-14 12:09:14</a>
+                  </td>
+                </tr>
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/" target="_blank">/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/</a>
+                  </th>
+                  <td class="tna-table__cell">Too general. Wanted more specific nutritional info and studies.</td>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback/1">2024-03-14 12:09:14</a>
+                  </td>
+                </tr>
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/the-east-river-column-the-rebels-who-helped-second-world-war-prisoners-of-war/" target="_blank">/explore-the-collection/stories/the-east-river-column-the-rebels-who-helped-second-world-war-prisoners-of-war/</a>
+                  </th>
+                  <td class="tna-table__cell">Great read! I appreciated the balanced approach and the inclusion of various plant-based meal ideas. It's motivated me to try incorporating more plant-based foods into my diet.</td>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback/1">2024-03-14 12:09:14</a>
+                  </td>
+                </tr>
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/list-of-animals-held-in-the-bear-garden-in-elizabethan-southwark/" target="_blank">/explore-the-collection/stories/list-of-animals-held-in-the-bear-garden-in-elizabethan-southwark/</a>
+                  </th>
+                  <td class="tna-table__cell">While the article had some good points, it felt a bit one-sided. It would have been helpful to see more discussion on the potential challenges or downsides of a plant-based diet.</td>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback/1">2024-03-14 12:09:14</a>
+                  </td>
+                </tr>
+                <tr class="tna-table__row">
+                  <th class="tna-table__header">
+                    <a href="https://tna.dblclk.dev/explore-the-collection/stories/judy-the-only-dog-registered-as-a-prisoner-of-war/" target="_blank">/explore-the-collection/stories/judy-the-only-dog-registered-as-a-prisoner-of-war/</a>
+                  </th>
+                  <td class="tna-table__cell">Great variety of destinations and useful travel tips.</td>
+                  <td class="tna-table__cell">
+                    <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback/1">2024-03-14 12:09:14</a>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tna-button-group">
+          {{ tnaButton({
+              text: "Load 5 more responses",
+              buttonElement: true
+          }) }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

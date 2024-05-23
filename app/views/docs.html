@@ -1,0 +1,259 @@
+{% extends 'layouts/main.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/header/macro.njk' import tnaHeader %}
+
+{% set pageTitle = 'API documentation' %}
+
+{% block header %}
+{{ tnaHeader({
+  logo: {
+    href: "/",
+    strapline: "Feedback"
+  },
+  navigation: [
+    {
+      text: "Log out",
+      href: "#/logout"
+    }
+  ],
+  topNavigation: topNavigation
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <h1 class="tna-heading-xl">
+          {{ pageTitle }}
+        </h1>
+      </div>
+    </div>
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-1-3 tna-column--full-small tna-column--full-tiny tna-!--padding-top-l">
+        <h2 class="tna-heading-l">On this page</h2>
+        <ul class="tna-ul">
+          <li>
+            <a href="#intro">API introduction</a>
+          </li>
+          <li>
+            <a href="#get-prompts">Get prompts</a>
+          </li>
+          <li>
+            <a href="#submit">Submit feedback</a>
+          </li>
+          <li>
+            <a href="#submit-batch">Submit batched feedback</a>
+          </li>
+          <li>
+            <a href="#renew-api-key">Renew API key</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tna-column tna-column--width-2-3 tna-column--full-small tna-column--full-tiny tna-!--padding-top-l">
+        <h2 class="tna-heading-l" id="intro">API introduction</h2>
+        <ul class="tna-ul">
+          <li>Always send requests from the server and never from the frontend</li>
+          <li>Store the API key securely and don't expose it to the client</li>
+        </ul>
+        <h2 class="tna-heading-l" id="get-prompts">Get prompts</h2>
+        <dl class="tna-dl">
+            <dt>Method</dt>
+            <dd>GET</dd>
+            <dt>URI format</dt>
+            <dd>/api/v1/prompts/?page_uri={page_uri}&api_key={api_key}</dd>
+        </dl>
+        <h3 class="tna-heading-m">URL parameters</h3>
+        <dl class="tna-dl">
+            <dt>page_uri</dt>
+            <dd>The URI of the page that is being loaded</dd>
+            <dt>api_key</dt>
+            <dd>An API key associated with the target project</dd>
+        </dl>
+        <h3 class="tna-heading-m">Response</h3>
+        <dl class="tna-dl">
+            <dt>200</dt>
+            <dd>Prompts returned</dd>
+            <dt>401</dt>
+            <dd>The API key is incorrect</dd>
+            <dt>404</dt>
+            <dd>No prompts for the given page URI</dd>
+        </dl>
+        <h4 class="tna-heading-s">Format</h4>
+        <pre class="tna-feedback-code"><code>{
+    "prompts": Array(
+        {
+            "id": String,
+            "type": Enum("binary", "range", "text"),
+            "prompt": String,
+            "options": Array(
+                {
+                    "index": Integer,
+                    "text": String
+                } | {
+                    "positive": Boolean,
+                    "text": String
+                } | NULL
+            )
+        }
+    )
+}</code></pre>
+        <h4 class="tna-heading-s">Example</h4>
+        <pre class="tna-feedback-code"><code>{
+    "prompts": [
+        {
+            "id": "5bc28f08-9155-468e-af6a-e89bcee229b8",
+            "type": "range",
+            "prompt": "How interesting was this article?",
+            "options": [
+                {
+                    "index": 0,
+                    "text": "Not very"
+                },
+                {
+                    "index": 1,
+                    "text": "Somewhat"
+                },
+                {
+                    "index": 2,
+                    "text": "Quite"
+                },
+                {
+                    "index": 3,
+                    "text": "Very"
+                }
+            ]
+        },
+        {
+            "id": "4d63bd4e-c725-4ee7-8e10-ef439b2aed99",
+            "type": "binary",
+            "prompt": "Was this page helpful?",
+            "options": [
+                {
+                    "positive": true,
+                    "text": "Yes"
+                },
+                {
+                    "positive": false,
+                    "text": "No"
+                }
+            ]
+        }
+    ]
+}</code></pre>
+        <h2 class="tna-heading-l" id="submit">Submit feedback</h2>
+        <dl class="tna-dl">
+            <dt>Method</dt>
+            <dd>POST</dd>
+            <dt>URI</dt>
+            <dd>/api/v1/response/</dd>
+        </dl>
+        <h3 class="tna-heading-m">Body parameters</h3>
+        <dl class="tna-dl">
+            <dt>prompt_id</dt>
+            <dd>The ID of the prompt to respond to</dd>
+            <dt>response</dt>
+            <dd>The response given by the user</dd>
+            <dt>api_key</dt>
+            <dd>An API key with write access to the target project</dd>
+        </dl>
+        <h4 class="tna-heading-s">Example body - binary response</h4>
+        <pre class="tna-feedback-code"><code>{
+    "prompt_id": "abc123",
+    "response": true,
+    "api_key": "xyz1337"
+}</code></pre>
+        <h4 class="tna-heading-s">Example body - range response</h4>
+        <pre class="tna-feedback-code"><code>{
+    "prompt_id": "def456",
+    "response": 3,
+    "api_key": "xyz1337"
+}</code></pre>
+        <h4 class="tna-heading-s">Example body - text response</h4>
+        <pre class="tna-feedback-code"><code>{
+    "prompt_id": "ghi789",
+    "response": "This was a very interesting article.",
+    "api_key": "xyz1337"
+}</code></pre>
+        <h3 class="tna-heading-m">Response</h3>
+        <dl class="tna-dl">
+            <dt>201</dt>
+            <dd>Feedback received</dd>
+            <dt>400</dt>
+            <dd>The format or content of at least one of the responses given is invalid or rejected</dd>
+            <dt>401</dt>
+            <dd>The API key is incorrect</dd>
+            <dt>403</dt>
+            <dd>The API key does not have write level access</dd>
+            <dt>404</dt>
+            <dd>No prompt matches the ID given</dd>
+            <dt>405</dt>
+            <dd>The given prompt is not active and cannot accept responses</dd>
+        </dl>
+        <h2 class="tna-heading-l" id="submit-batch">Submit batched feedback</h2>
+        <dl class="tna-dl">
+            <dt>Method</dt>
+            <dd>POST</dd>
+            <dt>URI</dt>
+            <dd>/api/v1/responses/</dd>
+        </dl>
+        <h3 class="tna-heading-m">Body parameters</h3>
+        <dl class="tna-dl">
+            <dt>prompts</dt>
+            <dd>An object of key/value pairs where the key is the ID of the prompt to respond to and the value is the response given by the user</dd>
+            <dt>api_key</dt>
+            <dd>An API key with write access to the target project</dd>
+        </dl>
+        <h4 class="tna-heading-s">Example body</h4>
+        <pre class="tna-feedback-code"><code>{
+    "prompts": {
+        "abc123": true,
+        "def456": 3,
+        "ghi789": "This was a very interesting article."
+    }
+    "api_key": "xyz1337"
+}</code></pre>
+        <h3 class="tna-heading-m">Response</h3>
+        <dl class="tna-dl">
+            <dt>201</dt>
+            <dd>Feedback received</dd>
+            <dt>400</dt>
+            <dd>The format or content of the response given is invalid or rejected</dd>
+            <dt>401</dt>
+            <dd>The API key is incorrect</dd>
+            <dt>403</dt>
+            <dd>The API key does not have write level access</dd>
+            <dt>404</dt>
+            <dd>No prompt matches the ID given</dd>
+            <dt>405</dt>
+            <dd>The given prompt is not active and cannot accept responses</dd>
+        </dl>
+        <h2 class="tna-heading-l" id="renew-api-key">Renew API key</h2>
+        <dl class="tna-dl">
+            <dt>Method</dt>
+            <dd>POST</dd>
+            <dt>URI</dt>
+            <dd>/api/v1/renew-api-key/</dd>
+        </dl>
+        <h3 class="tna-heading-m">Body parameters</h3>
+        <dl class="tna-dl">
+            <dt>api_key</dt>
+            <dd>An API key to renew</dd>
+        </dl>
+        <h3 class="tna-heading-m">Response</h3>
+        <dl class="tna-dl">
+            <dt>200</dt>
+            <dd>The API key has been renewed</dd>
+            <dt>401</dt>
+            <dd>The API key is incorrect</dd>
+            <dt>403</dt>
+            <dd>The API key has recently been renewed and cannot be renewed yet</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+{% endblock %}

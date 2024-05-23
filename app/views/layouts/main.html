@@ -1,6 +1,73 @@
-{#
-For guidance on how to use layouts see:
-https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
-#}
+{% extends 'nationalarchives/templates/layouts/_prototype-kit.njk' %}
 
-{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/header/macro.njk' import tnaHeader %}
+
+{% set siteTitle = 'The National Archives Feedback' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'blue' %}
+
+{% set topNavigation = [
+  {
+    text: "Settings",
+    href: "/settings"
+  },
+  {
+    text: "API Documentation",
+    href: "/docs"
+  }
+] %}
+
+{% block stylesheets %}
+  {{ super() }}
+  <link href="/public/stylesheets/feedback.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header %}
+{{ tnaHeader({
+  logo: {
+    href: "/",
+    strapline: "Feedback"
+  },
+  navigation: [
+    {
+      text: "Prompts",
+      href: "/588c1222-5bdf-40db-9d84-29ffe6e3bb91/prompts"
+    },
+    {
+      text: "Feedback",
+      href: "/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback"
+    },
+    {
+      text: "API keys",
+      href: "/588c1222-5bdf-40db-9d84-29ffe6e3bb91/api-keys"
+    },
+    {
+      text: "Log out",
+      href: "#/logout"
+    }
+  ],
+  topNavigation: topNavigation
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  <div class="tna-column tna-column--full">
+    {{ tnaBreadcrumbs({
+      items: [
+        {
+          text: 'Home',
+          href: '/'
+        }
+      ]
+    }) }}
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+  {{ tnaFooter({
+    themeSelector: true
+  }) }}
+{% endblock %}

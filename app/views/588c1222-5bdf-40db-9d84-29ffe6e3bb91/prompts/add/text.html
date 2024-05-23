@@ -1,0 +1,91 @@
+{% extends 'layouts/main.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+{% from "nationalarchives/components/checkboxes/macro.njk" import tnaCheckboxes %}
+{% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
+{% from "nationalarchives/components/warning/macro.njk" import tnaWarning %}
+
+{% set pageTitle = 'New text prompt' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  <div class="tna-column tna-column--full">
+    {{ tnaBreadcrumbs({
+      items: [
+        {
+          text: 'Home',
+          href: '/'
+        },
+        {
+          text: 'ETNA',
+          href: '/588c1222-5bdf-40db-9d84-29ffe6e3bb91'
+        },
+        {
+          text: 'Prompts',
+          href: '/588c1222-5bdf-40db-9d84-29ffe6e3bb91/prompts'
+        }
+      ]
+    }) }}
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <form novalidate>
+            <h1 class="tna-heading-xl">
+              {{ pageTitle }}
+            </h1>
+            {{ tnaWarning({
+              headingLevel: 3,
+              body: "Once created, the details of the prompt cannot be changed."
+            }) }}
+            {{ tnaTextInput({
+              label: "Prompt",
+              headingLevel: 2,
+              headingSize: "m",
+              id: "prompt",
+              name: "prompt",
+              "hint": "The prompt to display to users"
+            }) }}
+            {{ tnaTextInput({
+              label: "Max response size",
+              headingLevel: 2,
+              headingSize: "m",
+              id: "size",
+              name: "size",
+              value: 250
+            }) }}
+            {{ tnaCheckboxes({
+              label: "Status",
+              headingLevel: 2,
+              headingSize: "m",
+              id: "active",
+              name: "active",
+              items: [
+                {
+                  text: "Make active and start collecting responses",
+                  value: "true"
+                }
+              ]
+            }) }}
+            <div class="tna-button-group">
+            {{ tnaButton({
+                text: "Create",
+                buttonElement: true,
+                buttonType: "submit"
+            }) }}
+            {{ tnaButton({
+                text: "Cancel",
+                href: "/588c1222-5bdf-40db-9d84-29ffe6e3bb91/prompts",
+                plain: true
+            }) }}
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

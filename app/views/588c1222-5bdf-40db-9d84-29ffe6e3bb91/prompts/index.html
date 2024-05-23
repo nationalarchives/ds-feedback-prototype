@@ -1,0 +1,237 @@
+{% extends 'layouts/project.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+{% from "nationalarchives/components/checkboxes/macro.njk" import tnaCheckboxes %}
+{% from "nationalarchives/components/quick-filters/macro.njk" import tnaQuickFilters %}
+{% from "nationalarchives/components/search-field/macro.njk" import tnaSearchField %}
+
+{% set pageTitle = 'Prompts' %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <form novalidate>
+          {{ tnaSearchField({
+            label: pageTitle,
+            headingLevel: 1,
+            headingSize: "xl",
+            id: "search",
+            name: "q"
+          }) }}
+        </form>
+      </div>
+    </div>
+    <div class="tna-container">
+      <div class="tna-column tna-!--margin-top-m">
+        <!-- <div class="tna-aside tna-aside--tight tna-background-tint"> -->
+          <h2 class="tna-heading-s">Filter prompts by type</h2>
+          {{ tnaQuickFilters({
+            items: [
+              {
+                label: "All types",
+                href: "#?filter=all",
+                selected: true
+              },
+              {
+                label: "Binary",
+                href: "#?filter=binary"
+              },
+              {
+                label: "Range",
+                href: "#?filter=range"
+              },
+              {
+                label: "Text",
+                href: "#?filter=text"
+              }
+            ],
+            classes: "tna-!--margin-top-xs"
+          }) }}
+        <!-- </div> -->
+      </div>
+      <div class="tna-column tna-!--margin-top-m">
+        <!-- <div class="tna-aside tna-aside--tight tna-background-tint"> -->
+          <h2 class="tna-heading-s">Filter prompts by active</h2>
+          {{ tnaQuickFilters({
+            items: [
+              {
+                label: "Both active and inactive",
+                href: "#?active=all",
+                selected: true
+              },
+              {
+                label: "Active",
+                href: "#?active=true"
+              },
+              {
+                label: "Inactive",
+                href: "#?active=false"
+              }
+            ],
+            classes: "tna-!--margin-top-xs"
+          }) }}
+        <!-- </div> -->
+      </div>
+    </div>
+    <div class="tna-container">
+      <div class="tna-column tna-column--full tna-!--padding-top-m">
+        <div class="tna-table-wrapper">
+          <table class="tna-table">
+            <thead class="tna-table__head">
+              <tr class="tna-table__row">
+                <th class="tna-table__header">URL pattern</th>
+                <th class="tna-table__header">Type</th>
+                <th class="tna-table__header">Prompt</th>
+                <th class="tna-table__header">Active</th>
+                <!-- <th class="tna-table__header">Actions</th> -->
+                <th class="tna-table__header" colspan="2">Move</th>
+              </tr>
+            </thead>
+            <tbody class="tna-table__body">
+              <tr class="tna-table__row">
+                <th class="tna-table__header">
+                  <a href="./prompts/1">/explore-the-collection/*</a>
+                </th>
+                <td class="tna-table__cell">Range (4)</td>
+                <td class="tna-table__cell">How interesting was this article?</td>
+                <td class="tna-table__cell">Yes</td>
+                <!-- <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "See 12 responses",
+                      href: "#"
+                    }) }}
+                  </div>
+                </td> -->
+                <td class="tna-table__cell"></td>
+                <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "Move down",
+                      href: "#",
+                      icon: "arrow-down",
+                      iconOnly: false,
+                      plain: true
+                    }) }}
+                  </div>
+                </td>
+              </tr>
+              <tr class="tna-table__row">
+                <th class="tna-table__header">
+                  <a href="./prompts/2">/explore-the-collection/stories/*</a>
+                </th>
+                <td class="tna-table__cell">Text</td>
+                <td class="tna-table__cell">How can we improve this page?</td>
+                <td class="tna-table__cell">No</td>
+                <!-- <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "See 6 responses",
+                      href: "#"
+                    }) }}
+                  </div>
+                </td> -->
+                <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "Move up",
+                      href: "#",
+                      icon: "arrow-up",
+                      iconOnly: false,
+                      plain: true
+                    }) }}
+                  </div>
+                </td>
+                <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "Move down",
+                      href: "#",
+                      icon: "arrow-down",
+                      iconOnly: false,
+                      plain: true
+                    }) }}
+                  </div>
+                </td>
+              </tr>
+              <tr class="tna-table__row">
+                <th class="tna-table__header">
+                  <a href="./prompts/3">/catalogue/*</a>
+                </th>
+                <td class="tna-table__cell">Binary</td>
+                <td class="tna-table__cell">Was this page helpful?</td>
+                <td class="tna-table__cell">Yes</td>
+                <!-- <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "See 9 responses",
+                      href: "#"
+                    }) }}
+                  </div>
+                </td> -->
+                <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "Move up",
+                      href: "#",
+                      icon: "arrow-up",
+                      iconOnly: false,
+                      plain: true
+                    }) }}
+                  </div>
+                </td>
+                <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "Move down",
+                      href: "#",
+                      icon: "arrow-down",
+                      iconOnly: false,
+                      plain: true
+                    }) }}
+                  </div>
+                </td>
+              </tr>
+              <tr class="tna-table__row">
+                <th class="tna-table__header">
+                  <a href="./prompts/4">/authors/*</a>
+                </th>
+                <td class="tna-table__cell">Text</td>
+                <td class="tna-table__cell">How can we improve this page?</td>
+                <td class="tna-table__cell">Yes</td>
+                <!-- <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "See 2 responses",
+                      href: "#"
+                    }) }}
+                  </div>
+                </td> -->
+                <td class="tna-table__cell">
+                  <div class="tna-button-group tna-button-group--small">
+                    {{ tnaButton({
+                      text: "Move up",
+                      href: "#",
+                      icon: "arrow-up",
+                      iconOnly: false,
+                      plain: true
+                    }) }}
+                  </div>
+                </td>
+                <td class="tna-table__cell"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tna-button-group">
+          {{ tnaButton({
+            text: "Create a prompt",
+            href: "./prompts/add"
+          }) }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

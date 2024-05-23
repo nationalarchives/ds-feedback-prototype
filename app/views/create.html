@@ -1,0 +1,59 @@
+{% extends 'layouts/main.html' %}
+
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+{% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
+
+{% set pageTitle = 'Create a new project' %}
+
+{% block header %}
+{{ tnaHeader({
+  logo: {
+    href: "/",
+    strapline: "Feedback"
+  },
+  navigation: [
+    {
+      text: "Log out",
+      href: "#/logout"
+    }
+  ],
+  topNavigation: topNavigation
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <form novalidate>
+            <h1 class="tna-heading-xl">
+            {{ pageTitle }}
+            </h1>
+            {{ tnaTextInput({
+              label: "Name",
+              headingLevel: 2,
+              headingSize: "m",
+              id: "name",
+              name: "name",
+              hint: "A memorable name for your project"
+            }) }}
+            {{ tnaTextInput({
+              label: "Domain",
+              headingLevel: 2,
+              headingSize: "m",
+              id: "domain",
+              name: "domain",
+              hint: "The main domain for your project"
+            }) }}
+            <div class="tna-button-group">
+              {{ tnaButton({
+                text: "Create project",
+                buttonElement: true,
+                buttonType: "submit"
+              }) }}
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

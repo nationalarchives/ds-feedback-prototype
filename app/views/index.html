@@ -1,20 +1,64 @@
-{% extends "layouts/main.html" %}
+{% extends 'layouts/main.html' %}
 
-{% set pageName="Home" %}
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+
+{% set pageTitle = 'My projects' %}
+
+{% block header %}
+{{ tnaHeader({
+  logo: {
+    href: "/",
+    strapline: "Feedback"
+  },
+  navigation: [
+    {
+      text: "Log out",
+      href: "#/logout"
+    }
+  ],
+  topNavigation: topNavigation
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
 
 {% block content %}
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
-
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+  <div class="tna-section">
+    <div class="tna-container">
+      <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+        <h1 class="tna-heading-xl">
+          {{ pageTitle }}
+        </h1>
+      </div>
+      <div class="tna-column tna-column--full tna-!--padding-top-m">
+        <div class="tna-table-wrapper">
+          <table class="tna-table">
+            <thead class="tna-table__head">
+              <tr class="tna-table__row">
+                <th class="tna-table__header">Name</th>
+                <th class="tna-table__header">Domain</th>
+                <th class="tna-table__header">Owner</th>
+              </tr>
+            </thead>
+            <tbody class="tna-table__body">
+              <tr class="tna-table__row">
+                <th class="tna-table__header">
+                  <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91">ETNA</a>
+                </th>
+                <td class="tna-table__cell">https://tna.dblclk.dev/</td>
+                <td class="tna-table__cell">Andrew Hosgood</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tna-button-group">
+          {{ tnaButton({
+            text: "Create a project",
+            href: "/create"
+          }) }}
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
 {% endblock %}
