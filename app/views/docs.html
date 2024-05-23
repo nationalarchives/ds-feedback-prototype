@@ -65,10 +65,12 @@
             <dt>Method</dt>
             <dd>GET</dd>
             <dt>URI format</dt>
-            <dd>/api/v1/prompts/?page_uri={page_uri}&api_key={api_key}</dd>
+            <dd>/api/v1/prompts/?project_id={project_id}&page_uri={page_uri}&api_key={api_key}</dd>
         </dl>
         <h3 class="tna-heading-m">URL parameters</h3>
         <dl class="tna-dl">
+            <dt>project_id</dt>
+            <dd>The ID of the project</dd>
             <dt>page_uri</dt>
             <dd>The URI of the page that is being loaded</dd>
             <dt>api_key</dt>
@@ -81,10 +83,11 @@
             <dt>401</dt>
             <dd>The API key is incorrect</dd>
             <dt>404</dt>
-            <dd>No prompts for the given page URI</dd>
+            <dd>No prompts for the given page URI or the project ID cannot be found</dd>
         </dl>
         <h4 class="tna-heading-s">Format</h4>
         <pre class="tna-feedback-code"><code>{
+    "project_id": String,
     "prompts": Array(
         {
             "id": String,
@@ -104,6 +107,7 @@
 }</code></pre>
         <h4 class="tna-heading-s">Example</h4>
         <pre class="tna-feedback-code"><code>{
+    "project_id": "588c1222-5bdf-40db-9d84-29ffe6e3bb91",
     "prompts": [
         {
             "id": "5bc28f08-9155-468e-af6a-e89bcee229b8",
@@ -154,6 +158,8 @@
         </dl>
         <h3 class="tna-heading-m">Body parameters</h3>
         <dl class="tna-dl">
+            <dt>project_id</dt>
+            <dd>The ID of the project</dd>
             <dt>prompt_id</dt>
             <dd>The ID of the prompt to respond to</dd>
             <dt>response</dt>
@@ -163,18 +169,21 @@
         </dl>
         <h4 class="tna-heading-s">Example body - binary response</h4>
         <pre class="tna-feedback-code"><code>{
+    "project_id": "588c1222-5bdf-40db-9d84-29ffe6e3bb91",
     "prompt_id": "abc123",
     "response": true,
     "api_key": "xyz1337"
 }</code></pre>
         <h4 class="tna-heading-s">Example body - range response</h4>
         <pre class="tna-feedback-code"><code>{
+    "project_id": "588c1222-5bdf-40db-9d84-29ffe6e3bb91",
     "prompt_id": "def456",
     "response": 3,
     "api_key": "xyz1337"
 }</code></pre>
         <h4 class="tna-heading-s">Example body - text response</h4>
         <pre class="tna-feedback-code"><code>{
+    "project_id": "588c1222-5bdf-40db-9d84-29ffe6e3bb91",
     "prompt_id": "ghi789",
     "response": "This was a very interesting article.",
     "api_key": "xyz1337"
@@ -190,7 +199,7 @@
             <dt>403</dt>
             <dd>The API key does not have write level access</dd>
             <dt>404</dt>
-            <dd>No prompt matches the ID given</dd>
+            <dd>No prompt matches the ID given or the project ID cannot be found</dd>
             <dt>405</dt>
             <dd>The given prompt is not active and cannot accept responses</dd>
         </dl>
@@ -203,6 +212,8 @@
         </dl>
         <h3 class="tna-heading-m">Body parameters</h3>
         <dl class="tna-dl">
+            <dt>project_id</dt>
+            <dd>The ID of the project</dd>
             <dt>prompts</dt>
             <dd>An object of key/value pairs where the key is the ID of the prompt to respond to and the value is the response given by the user</dd>
             <dt>api_key</dt>
@@ -210,6 +221,7 @@
         </dl>
         <h4 class="tna-heading-s">Example body</h4>
         <pre class="tna-feedback-code"><code>{
+    "project_id": "588c1222-5bdf-40db-9d84-29ffe6e3bb91",
     "prompts": {
         "abc123": true,
         "def456": 3,
@@ -228,7 +240,7 @@
             <dt>403</dt>
             <dd>The API key does not have write level access</dd>
             <dt>404</dt>
-            <dd>No prompt matches the ID given</dd>
+            <dd>No prompt matches the ID given or the project ID cannot be found</dd>
             <dt>405</dt>
             <dd>The given prompt is not active and cannot accept responses</dd>
         </dl>
@@ -241,6 +253,8 @@
         </dl>
         <h3 class="tna-heading-m">Body parameters</h3>
         <dl class="tna-dl">
+            <dt>project_id</dt>
+            <dd>The ID of the project</dd>
             <dt>api_key</dt>
             <dd>An API key to renew</dd>
         </dl>
@@ -252,6 +266,8 @@
             <dd>The API key is incorrect</dd>
             <dt>403</dt>
             <dd>The API key has recently been renewed and cannot be renewed yet</dd>
+            <dt>404</dt>
+            <dd>The project ID cannot be found</dd>
         </dl>
       </div>
     </div>
