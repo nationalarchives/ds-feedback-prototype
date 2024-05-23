@@ -2,6 +2,7 @@
 
 {% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
 {% from "nationalarchives/components/radios/macro.njk" import tnaRadios %}
+{% from "nationalarchives/components/textarea/macro.njk" import tnaTextarea %}
 {% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
 {% from "nationalarchives/components/warning/macro.njk" import tnaWarning %}
 
@@ -75,6 +76,24 @@
             {{ tnaWarning({
               headingLevel: 3,
               body: "Changing the data retention duration could result in data being deleted."
+            }) }}
+            {{ tnaTextarea({
+              label: "Censored words",
+              headingLevel: 2,
+              headingSize: "m",
+              id: "censored",
+              name: "censored",
+              hint: "Comma separated list of censored words or phrases that get replaced with asterisks",
+              value: "@gmail.com,@nationalarchives.gov.uk"
+            }) }}
+            {{ tnaTextarea({
+              label: "Blacklisted words",
+              headingLevel: 2,
+              headingSize: "m",
+              id: "blacklist",
+              name: "blacklist",
+              hint: "Comma separated list of blacklisted words or phrases that result in text feedback being ignored",
+              value: "fascism,bitcoin,WHERE 1=1"
             }) }}
             <div class="tna-button-group">
               {{ tnaButton({
