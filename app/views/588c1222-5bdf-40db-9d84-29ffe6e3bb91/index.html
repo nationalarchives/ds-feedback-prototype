@@ -33,11 +33,21 @@
           headingLevel: 2,
           body: 'One of your <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/api-keys">API keys</a> is about to expire. Renew it now to continue using it.'
         }) }}
+        <div class="tna-button-group tna-button-group--small">
+          {{ tnaButton({
+            text: "Edit project details",
+            href: "/588c1222-5bdf-40db-9d84-29ffe6e3bb91/edit"
+          }) }}
+        </div>
         <dl class="tna-dl tna-dl--plain">
           <dt>Domain</dt>
           <dd>https://tna.dblclk.dev/</dd>
           <dt>Project ID</dt>
-          <dd>588c1222-5bdf-40db-9d84-29ffe6e3bb91</dd>
+          <dd>
+            <code>588c1222-5bdf-40db-9d84-29ffe6e3bb91</code>
+          </dd>
+          <dt>Data retention</dt>
+          <dd>180 days</dd>
           <dt>Created on</dt>
           <dd>2023-09-24</dd>
           <dt>Owner</dt>

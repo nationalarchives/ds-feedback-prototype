@@ -3,8 +3,9 @@
 {% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
 {% from "nationalarchives/components/radios/macro.njk" import tnaRadios %}
 {% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
+{% from "nationalarchives/components/warning/macro.njk" import tnaWarning %}
 
-{% set pageTitle = 'Create a new project' %}
+{% set pageTitle = 'Edit Project' %}
 
 {% block header %}
 {{ tnaHeader({
@@ -26,7 +27,7 @@
   <div class="tna-section">
     <div class="tna-container">
       <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
-        <form novalidate>
+        <form action="/588c1222-5bdf-40db-9d84-29ffe6e3bb91" novalidate>
             <h1 class="tna-heading-xl">
             {{ pageTitle }}
             </h1>
@@ -36,7 +37,8 @@
               headingSize: "m",
               id: "name",
               name: "name",
-              hint: "A memorable name for your project"
+              hint: "A memorable name for your project",
+              value: "ETNA"
             }) }}
             {{ tnaTextInput({
               label: "Domain",
@@ -44,10 +46,11 @@
               headingSize: "m",
               id: "domain",
               name: "domain",
-              hint: "The main domain for your project"
+              hint: "The main domain for your project",
+              value: "https://tna.dblclk.dev/"
             }) }}
             {{ tnaRadios({
-                label: "Data retention",
+                label: "Data retention duration",
                 headingLevel: 2,
                 headingSize: "m",
                 id: "retention",
@@ -66,11 +69,16 @@
                         text: "180 days",
                         value: "180"
                     }
-                ]
+                ],
+                selected: "180"
+            }) }}
+            {{ tnaWarning({
+              headingLevel: 3,
+              body: "Changing the data retention duration could result in data being deleted."
             }) }}
             <div class="tna-button-group">
               {{ tnaButton({
-                text: "Create project",
+                text: "Update",
                 buttonElement: true,
                 buttonType: "submit"
               }) }}

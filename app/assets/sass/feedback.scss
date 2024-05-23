@@ -37,7 +37,11 @@
 .tna-feedback-code {
     @include spacing.space-above;
     padding: spacing.space(0.5);
+}
+
+.tna-feedback-code,
+code {
+    @include typography.detail-font;
 
     @include colour.tint;
-    @include typography.detail-font;
 }
