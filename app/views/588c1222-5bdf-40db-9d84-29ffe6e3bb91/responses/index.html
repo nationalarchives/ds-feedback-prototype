@@ -3,13 +3,13 @@
 {% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
 {% from "nationalarchives/components/search-field/macro.njk" import tnaSearchField %}
 
-{% set pageTitle = 'Feedback' %}
+{% set pageTitle = 'Responses' %}
 
 {% block content %}
   <div class="tna-section">
     <div class="tna-container">
       <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
-        <form action="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback" method="get" novalidate>
+        <form action="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/responses" method="get" novalidate>
           {{ tnaSearchField({
             label: pageTitle,
             hint: "Find by page URL",
@@ -34,7 +34,7 @@
             <tbody class="tna-table__body">
               <tr class="tna-table__row">
                 <th class="tna-table__header">
-                  <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/feedback/1">2024-05-23 14:17:48</a>
+                  <a href="/588c1222-5bdf-40db-9d84-29ffe6e3bb91/responses/1">2024-05-23 14:17:48</a>
                 </th>
                 <td class="tna-table__cell">{{ data.uri or '/explore-the-collection/stories/a-medieval-cold-and-flu-remedy/' }}</td>
                 <td class="tna-table__cell tna-table__cell--numeric">2</td>
