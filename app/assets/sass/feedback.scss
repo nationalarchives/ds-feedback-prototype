@@ -3,6 +3,8 @@
 @use "node_modules/@nationalarchives/frontend/nationalarchives/tools/typography";
 
 .tna-table {
+    width: 100%;
+    
     &__cell {
         &--percentage[style] {
             position: relative;
